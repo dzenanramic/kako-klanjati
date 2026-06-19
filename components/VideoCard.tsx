@@ -10,34 +10,35 @@ interface VideoResource {
 
 interface VideoCardProps {
   resource: VideoResource;
-  sectionColor: string;
 }
 
-export function VideoCard({ resource, sectionColor }: VideoCardProps) {
+export function VideoCard({ resource }: VideoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl backdrop-blur-xl bg-white/70 shadow-lg hover:shadow-2xl transition-all duration-700 transform ${
-        isHovered ? "scale-[1.04]" : "scale-100"
+      className={`group relative rounded-2xl bg-white/80 shadow-md hover:shadow-xl transition-all duration-500 ${
+        isHovered ? "-translate-y-1" : "translate-y-0"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Decorative gradient overlay */}
+      {/* Left accent border */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${sectionColor} opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
-      ></div>
+        className={`absolute left-0 top-0 bottom-0 w-1 bg-[var(--color-green-warm-400)] rounded-l-2xl transition-all duration-500 ${
+          isHovered ? "w-1.5" : "w-1"
+        }`}
+      />
 
-      <div className="relative p-6">
-        <div className="flex items-start gap-3 mb-4">
-          <div className="text-3xl">{resource.icon}</div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-800 transition-colors">
+      <div className="relative p-6 pl-7">
+        <div className="flex items-start gap-3 mb-5">
+          <div className="text-2xl flex-shrink-0">{resource.icon}</div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-semibold text-[var(--color-green-warm-800)] leading-snug">
               {resource.title}
             </h3>
             {resource.description && (
-              <p className="text-gray-700 text-sm mt-2 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+              <p className="text-sm text-[var(--color-green-warm-600)] mt-1.5 leading-relaxed opacity-75">
                 {resource.description}
               </p>
             )}
@@ -49,18 +50,13 @@ export function VideoCard({ resource, sectionColor }: VideoCardProps) {
             href={resource.youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${sectionColor} text-white font-semibold shadow-lg hover:shadow-emerald-500/40 transition-all duration-500 transform hover:scale-110 no-underline`}
+            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[var(--color-green-warm-500)] text-white font-medium text-sm shadow-sm hover:bg-[var(--color-green-warm-600)] transition-all duration-300 hover:shadow-md no-underline"
           >
-            <PlayCircle size={22} className="animate-pulse" />
+            <PlayCircle size={20} />
             <span>Gledaj video</span>
           </a>
         </div>
       </div>
-
-      {/* Glow border */}
-      <div
-        className={`absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r ${sectionColor} opacity-0 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none`}
-      ></div>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export const sections: Section[] = [
   {
     title: "Teorija",
     icon: BookOpen,
-    color: "from-emerald-500 to-teal-600",
+    color: "from-green-warm-500 to-green-warm-600",
     resources: [
       {
         title: "Kako se uzima abdest",
@@ -37,7 +37,7 @@ export const sections: Section[] = [
   {
     title: "Praktično",
     icon: Heart,
-    color: "from-blue-500 to-indigo-600",
+    color: "from-green-warm-400 to-green-warm-500",
     resources: [
       {
         title: "Kako uzeti abdest",
@@ -50,7 +50,7 @@ export const sections: Section[] = [
   {
     title: "Namazi",
     icon: Moon,
-    color: "from-purple-500 to-violet-600",
+    color: "from-green-warm-600 to-green-warm-700",
     resources: [
       {
         title: "Kako se klanja sabah namaz",
@@ -82,7 +82,7 @@ export const sections: Section[] = [
   {
     title: "Kratke Sure",
     icon: Sun,
-    color: "from-amber-500 to-orange-600",
+    color: "from-gold-400 to-gold-500",
     resources: [
       {
         title: "Sura El-Fatiha",

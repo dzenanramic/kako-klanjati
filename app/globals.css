@@ -41,6 +41,23 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Custom warm green palette */
+  --color-green-warm-50: #f4f7f0;
+  --color-green-warm-100: #e3ead9;
+  --color-green-warm-200: #c7d6b3;
+  --color-green-warm-300: #a3bd85;
+  --color-green-warm-400: #7fa35a;
+  --color-green-warm-500: #5b7b3a;
+  --color-green-warm-600: #4a6f3e;
+  --color-green-warm-700: #3d5a33;
+  --color-green-warm-800: #2e4527;
+  --color-green-warm-900: #1e2e1a;
+
+  /* Warm gold accent */
+  --color-gold-400: #c9a84c;
+  --color-gold-500: #b8943b;
+  --color-gold-600: #a07d2f;
 }
 
 :root {
@@ -103,7 +120,6 @@
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
@@ -116,151 +132,75 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
-    /* Islamic-inspired soft green + white theme */
-    --site-emerald-50: #ecfdf5;
-    --site-emerald-100: #d1fae5;
-    --site-emerald-200: #a7f3d0;
-    --site-emerald-300: #6ee7b7;
-    --site-emerald-400: #34d399;
-    --site-emerald-500: #10b981;
-    --site-emerald-600: #059669;
-    --site-emerald-700: #047857;
-    --site-emerald-800: #065f46;
-    --site-emerald-900: #064e3b;
-    color: rgb(13 52 27 / 1);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      sans-serif;
+    background-color: var(--color-green-warm-50);
+    color: rgb(35 42 28 / 1);
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom selection color */
+  ::selection {
+    background-color: rgba(91, 123, 58, 0.2);
+    color: rgb(30 46 26 / 1);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-green-warm-50);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-green-warm-200);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-green-warm-300);
   }
 }
 
-/* Enhanced Islamic geometric background pattern */
-.bg-pattern {
-  background-color: var(--site-emerald-50, #ecfdf5);
-  background-image: 
-    /* Star pattern overlay */ radial-gradient(
-      circle at 25% 25%,
-      rgba(16, 185, 129, 0.05) 0 1px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 75% 75%,
-      rgba(16, 185, 129, 0.04) 0 1px,
-      transparent 2px
-    ),
-    /* Geometric cross pattern */
-      linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.7) 25%,
-        transparent 25%,
-        transparent 75%,
-        rgba(255, 255, 255, 0.7) 75%,
-        rgba(255, 255, 255, 0.7)
-      ),
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.7) 25%,
-      transparent 25%,
-      transparent 75%,
-      rgba(255, 255, 255, 0.7) 75%,
-      rgba(255, 255, 255, 0.7)
-    ),
-    /* Subtle gradient overlay */
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(236, 253, 245, 0.95) 100%
-      );
-  background-size: 200px 200px, 240px 240px, 80px 80px, 80px 80px, 100% 100%;
-  background-position: 0 0, 50px 50px, 0 0, 40px 40px, 0 0;
+/* =============================================
+   Decorative Islamic Ornament (8-pointed star)
+   Used in Hero section as a subtle background motif
+   ============================================= */
+.islamic-ornament {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.04;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Enhanced cards and buttons */
-.card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.95),
-    rgba(255, 255, 255, 0.9)
-  );
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(3, 56, 38, 0.05), 0 2px 4px rgba(3, 56, 38, 0.03),
-    0 0 0 1px rgba(4, 120, 87, 0.04);
-  border: 1px solid rgba(4, 120, 87, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+.islamic-ornament::before,
+.islamic-ornament::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-green-warm-600);
+  border-radius: 0;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(3, 56, 38, 0.08), 0 4px 8px rgba(3, 56, 38, 0.04),
-    0 0 0 1px rgba(4, 120, 87, 0.06);
+.islamic-ornament::before {
+  transform: rotate(45deg);
 }
 
-.btn-emerald {
-  background: linear-gradient(
-    135deg,
-    var(--site-emerald-500),
-    var(--site-emerald-600)
-  );
-  color: white;
-  border-radius: 9999px;
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15),
-    0 2px 4px rgba(5, 150, 105, 0.08);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  cursor: pointer;
-}
-
-.btn-emerald:hover {
-  background: linear-gradient(
-    135deg,
-    var(--site-emerald-600),
-    var(--site-emerald-700)
-  );
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.2),
-    0 4px 8px rgba(5, 150, 105, 0.12);
-}
-
-.btn-emerald:active {
-  transform: translateY(0);
-}
-
-/* Responsive enhancements */
-@media (min-width: 1024px) {
-  .card {
-    border-radius: 1.25rem;
-    padding: 1.5rem;
-  }
-
-  .btn-emerald {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .card {
-    margin: 0 1rem;
-  }
-}
-
-/* Enhanced accessibility: focus states */
-.btn-emerald:focus {
-  outline: 3px solid rgba(16, 185, 129, 0.3);
-  outline-offset: 2px;
-}
-
-.card:focus-within {
-  outline: 2px solid rgba(16, 185, 129, 0.2);
-  outline-offset: 4px;
-}
-
-/* Enhanced decorative heading underline motif */
+/* Decorative heading underline */
 .decorative-heading {
   position: relative;
   display: inline-block;
@@ -271,29 +211,14 @@
   position: absolute;
   left: 0;
   bottom: -8px;
-  width: 64px;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--site-emerald-500),
-    var(--site-emerald-300),
-    transparent
-  );
+  width: 48px;
+  height: 3px;
+  background: var(--color-green-warm-500);
   border-radius: 2px;
   pointer-events: none;
 }
 
-/* Hero section styling */
-.hero-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--site-emerald-50) 0%,
-    rgba(255, 255, 255, 0.95) 50%,
-    var(--site-emerald-100) 100%
-  );
-}
-
-/* Section spacing utilities */
+/* Section spacing */
 .section-spacing {
   padding: 3rem 1rem;
 }
@@ -308,4 +233,28 @@
   .section-spacing {
     padding: 5rem 3rem;
   }
+}
+
+/* Subtle background texture on the main page */
+.page-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(91, 123, 58, 0.03) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(91, 123, 58, 0.02) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(91, 123, 58, 0.015) 0%,
+      transparent 50%
+    );
 }

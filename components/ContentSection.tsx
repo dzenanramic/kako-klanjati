@@ -28,14 +28,10 @@ export function ContentSection({
   mounted,
 }: ContentSectionProps) {
   return (
-    <section className="mb-28">
-      <SectionHeader
-        title={section.title}
-        icon={section.icon}
-        color={section.color}
-      />
+    <section className="mb-24 lg:mb-28">
+      <SectionHeader title={section.title} icon={section.icon} />
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 transform transition-all duration-700 ${
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transform transition-all duration-700 ${
           mounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
         style={{ transitionDelay: `${sectionIndex * 200}ms` }}
@@ -48,7 +44,7 @@ export function ContentSection({
               transitionDelay: `${sectionIndex * 200 + resourceIndex * 120}ms`,
             }}
           >
-            <VideoCard resource={resource} sectionColor={section.color} />
+            <VideoCard resource={resource} />
           </div>
         ))}
       </div>
